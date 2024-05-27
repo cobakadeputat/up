@@ -1,0 +1,46 @@
+using System;
+using System.IO;
+
+namespace anketa
+{
+class Program
+{
+static void Main(string[] args)
+{
+	// Определить имя файла для анкет
+	   string fileName = "ankets.txt";
+	        
+	// Цикл для обработки нескольких пользователей
+           while (true)
+        {
+            // Запрос имени пользователя
+            Console.Write("Введите ваше имя (или 'z' для выхода): ");
+            string name = Console.ReadLine();
+
+            if (name.ToLower() == "z")
+            {
+                break; // Прервать цикл, если пользователь введет "z"
+            }
+
+            // Запросить ответы на вопросы анкеты
+            Console.Write("Ваш возраст? ");
+            int age = int.Parse(Console.ReadLine());
+
+            Console.Write("Ваш любимый цвет? ");
+            string favoriteColor = Console.ReadLine();
+
+            // Сохранить ответы в текстовый файл
+            using (StreamWriter writer = new StreamWriter(fileName, true))
+            {
+                writer.WriteLine($"--- Новая анкета ---");
+                writer.WriteLine($"Имя: {name}");
+                writer.WriteLine($"Возраст: {age}");
+                writer.WriteLine($"Любимый цвет: {favoriteColor}");
+                writer.WriteLine("-----------------------");
+            }
+
+            // Сообщить пользователю, что анкета сохранена
+            Console.WriteLine("Анкета сохранена и заполнена");
+        }
+    }
+}
